@@ -9,7 +9,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-
 public class BaseClass {
 
 	WebDriver driver;
@@ -28,8 +27,8 @@ public class BaseClass {
 		}
 
 		dataProp = new Properties();
-		File dataProFile = new File(System.getProperty("user.dir")
-				+ "\\src\\main\\java\\com\\shopzone\\qa\\testdata\\testdata.properties");
+		File dataProFile = new File(
+				System.getProperty("user.dir") + "\\src\\main\\java\\com\\shopzone\\qa\\testdata\\testdata.properties");
 		try {
 			FileInputStream datafis = new FileInputStream(dataProFile);
 			dataProp.load(datafis);
