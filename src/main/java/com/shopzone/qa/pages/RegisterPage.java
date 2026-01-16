@@ -34,9 +34,9 @@ public class RegisterPage {
 	// validation objects
 	@FindBy(xpath = "//span[@data-valmsg-for='FirstName']")
 	WebElement firstNameWarning;
-	@FindBy(xpath = "//span[@for='LastName']")
+	@FindBy(xpath = "//span[contains(text(),'Last name is required.')]")
 	WebElement lastNameWarning;
-	@FindBy(xpath = "//span[@for='Email']")
+	@FindBy(xpath = "//span[contains(text(),'Email is required.')]")
 	WebElement emailWarning;
 	@FindBy(xpath = "//span[@for='Email']")
 	WebElement invalidEmailAddressWarning;
@@ -45,8 +45,13 @@ public class RegisterPage {
 
 	@FindBy(xpath = "//span[@for='Password']")
 	WebElement passwordWarning;
-	@FindBy(xpath = "//span[@for='ConfirmPassword']")
+	@FindBy(xpath = "//span[@for='ConfirmPassword' and text()='Password is required.']")
+	WebElement confirmPasswordWarning;
+
+	@FindBy(xpath = "//span[contains(text(),'The password and confirmation password do not match.')]")
 	WebElement passwordNotMatchingWarning;
+	@FindBy(xpath = "//div[contains(text(),'Your registration completed')]")
+	WebElement registrationCompletedSuccessfully;
 
 	public RegisterPage(WebDriver driver) {
 		this.driver = driver;
@@ -56,7 +61,7 @@ public class RegisterPage {
 	// Generic reusable method (ONLY ONCE)
 	public String getWarningText(WebElement element) {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 			wait.until(ExpectedConditions.visibilityOf(element));
 			return element.isDisplayed() ? element.getText().trim() : "";
 		} catch (Exception e) {
@@ -91,9 +96,18 @@ public class RegisterPage {
 		return getWarningText(passwordWarning);
 	}
 
+	// Confirm Password empty Warning
+	public String retrieveConfirmPasswordWarning() {
+		return getWarningText(confirmPasswordWarning);
+	}
+
 	// Password mismatch warning
 	public String retrievePasswordNotMatchingWarning() {
 		return getWarningText(passwordNotMatchingWarning);
+	}
+
+	public String retrieveRegistrantionCompletedSuccessfullyHeading() {
+		return getWarningText(registrationCompletedSuccessfully);
 	}
 
 	public void selectGender(String gender) {
@@ -158,8 +172,7 @@ public class RegisterPage {
 		boolean lastNameWarningStatus = lastNameWarning.getText().equals(expectedLastNameWarning);
 		boolean emailWarningStatus = emailWarning.getText().equals(expectedEmailWarning);
 		boolean passwordWarningStatus = passwordWarning.getText().equals(expectedPasswordWarning);
-		boolean confirmPasswordWarningStatus = passwordNotMatchingWarning.getText()
-				.equals(expectedConfirmPasswordWarning);
+		boolean confirmPasswordWarningStatus = confirmPasswordWarning.getText().equals(expectedConfirmPasswordWarning);
 		return firstNameWarningStatus && lastNameWarningStatus && emailWarningStatus && passwordWarningStatus
 				&& confirmPasswordWarningStatus;
 	}

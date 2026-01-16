@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import com.shopzone.qa.baseclass.BaseClass;
 import com.shopzone.qa.pages.DashboardPage;
 import com.shopzone.qa.pages.RegisterPage;
+import com.shopzone.qa.utilities.Utilities;
 
 public class RegisterTest extends BaseClass {
 	RegisterPage registerPage;
@@ -25,36 +26,43 @@ public class RegisterTest extends BaseClass {
 		registerPage = dashboardPage.navigateToRegisterPage();
 	}
 
-//	@AfterMethod
-//	public void tearDown() {
-//		driver.quit();
-//	}
+	@AfterMethod
+	public void tearDown() {
+		driver.quit();
+	}
 
 	@Test(priority = 1)
 	public void verifyRegisteringAnAccountWithMandatoryFields() {
 		dashboardPage = registerPage.registerWithMandatoryFields(dataProp.getProperty("firstName"),
-				dataProp.getProperty("lastName"), dataProp.getProperty("email"), dataProp.getProperty("password"),
-				dataProp.getProperty("confirmPassword"));
+				dataProp.getProperty("lastName"), Utilities.generateEmailWithTimeStamp(),
+				dataProp.getProperty("password"), dataProp.getProperty("confirmPassword"));
+		Assert.assertEquals(registerPage.retrieveRegistrantionCompletedSuccessfullyHeading(),
+				dataProp.getProperty("registrationCompletedSuccessfully"),
+				"registration completed successfully page not displayed");
 
 	}
 
 	@Test(priority = 2)
 	public void verifyRegisteringAccountByProvidingAllFields() {
 		dashboardPage = registerPage.registerWithAllFields("Male", dataProp.getProperty("firstName"),
-				dataProp.getProperty("lastName"), dataProp.getProperty("email"), dataProp.getProperty("password"),
-				dataProp.getProperty("confirmPassword"));
+				dataProp.getProperty("lastName"), Utilities.generateEmailWithTimeStamp(),
+				dataProp.getProperty("password"), dataProp.getProperty("confirmPassword"));
+		Assert.assertEquals(registerPage.retrieveRegistrantionCompletedSuccessfullyHeading(),
+				dataProp.getProperty("registrationCompletedSuccessfully"),
+				"registration completed successfully page not displayed");
+
 	}
 
 	@Test(priority = 3)
 	public void verifyRegisteringAccountWithExistingEmailAddress() {
 
 		dashboardPage = registerPage.registerWithAllFields("Male", dataProp.getProperty("firstName"),
-				dataProp.getProperty("lastName"), dataProp.getProperty("validEmail"), dataProp.getProperty("password"),
+				dataProp.getProperty("lastName"), dataProp.getProperty("email"), dataProp.getProperty("password"),
 				dataProp.getProperty("confirmPassword"));
 		Assert.assertTrue(
 				registerPage.retrieveDuplicateEmailAddressWarning()
 						.contains(dataProp.getProperty("duplicateEmailWarning")),
-				"Warning message regaring duplicate email address is not displayed");
+				"Warning message regarding duplicate email address is not displayed");
 	}
 
 	@Test(priority = 4)
@@ -63,6 +71,7 @@ public class RegisterTest extends BaseClass {
 		registerPage.clickOnRegisterButton();
 		Assert.assertTrue(registerPage.displayStatusOfWarningMessages(dataProp.getProperty("firstNameWarning"),
 				dataProp.getProperty("lastNameWarning"), dataProp.getProperty("emailWarning"),
-				dataProp.getProperty("passwordWarning"), dataProp.getProperty("passwordNotMatchingWarning")));
+				dataProp.getProperty("passwordWarning"), dataProp.getProperty("confirmPasswordWarning")));
 	}
+
 }
