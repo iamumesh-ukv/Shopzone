@@ -176,5 +176,4 @@ public class RegisterPage {
 		return firstNameWarningStatus && lastNameWarningStatus && emailWarningStatus && passwordWarningStatus
 				&& confirmPasswordWarningStatus;
 	}
-
 }

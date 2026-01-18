@@ -5,7 +5,7 @@
     <classes>
       <class name="com.shopzone.qa.testcases.LoginTest">
         <methods>
-          <include name="verifyLoginWithInvalidEmailAndValidPassword"/>
+          <include name="verifyLoginWithValidCredentials"/>
           <include name="teatDown"/>
           <include name="setup"/>
         </methods>

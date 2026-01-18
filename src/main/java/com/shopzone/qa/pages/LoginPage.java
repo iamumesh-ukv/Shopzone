@@ -26,9 +26,12 @@ public class LoginPage {
 	@FindBy(xpath = "//input[@value='Log in']")
 	WebElement loginButton;
 	@FindBy(xpath = "//span[contains(text(),'Login was unsuccessful. Please correct the errors ')]")
-	WebElement emailPasswordNoMatchWarning;
+	WebElement emailPasswordNotMatchingWarning;
 	@FindBy(xpath = "(//li[normalize-space()='No customer account found'])[1]")
 	WebElement noCustomerAccountFoundWarning;
+	@FindBy(xpath = "//a[@href='/customer/info' and contains(@class,'account')]")
+	WebElement accountEmailLink;
+
 
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
@@ -48,7 +51,7 @@ public class LoginPage {
 	}
 
 	public String retrieveEmailPasswordNotMatchingWarningMessageText() {
-		return getWarningText(emailPasswordNoMatchWarning);
+		return getWarningText(emailPasswordNotMatchingWarning);
 	}
 
 	public String retrieveNoCustomerAccountFoundWarning() {
@@ -61,14 +64,13 @@ public class LoginPage {
 
 	public void enterPassword(String passwordText) {
 		passwordField.sendKeys(passwordText);
-
+	}
+	public String getAccountEmailText() {
+	    return accountEmailLink.getText();
 	}
 
-	public LoginPage clickOnLoginButton() {
-
+	public void clickOnLoginButton() {
 		loginButton.click();
-		return new LoginPage(driver);
-
 	}
 
 	public LoginPage login(String emailText, String passwordText) {
@@ -76,6 +78,16 @@ public class LoginPage {
 		passwordField.sendKeys(passwordText);
 		loginButton.click();
 		return new LoginPage(driver);
+		
+//		public boolean displayStatusOfWarningMessages(String expectedemailPasswordNoMatchWarning, String expectedNoCustomerFoundWarning) 
+//		{
+//
+//			boolean emailPasswordNoMatchWarningStatus = emailPasswordNoMatchWarning.getText().equals(expectedemailPasswordNoMatchWarning);
+//			boolean noCustomerAccountFoundWarningStatus = noCustomerAccountFoundWarning.getText().equals(expectedNoCustomerFoundWarning);
+//			
+//			
+//			return emailPasswordNoMatchWarningStatus && noCustomerAccountFoundWarningStatus;
+//		}
 
 	}
 }

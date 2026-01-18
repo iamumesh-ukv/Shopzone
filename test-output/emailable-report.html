@@ -8,42 +8,19 @@
 <body>
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
-<tr><th colspan="8">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">43,644</td><td></td><td></td></tr>
+<tr><th colspan="8">Suite</th></tr>
+<tr><td><a href="#t0">Test</a></td><td class="num">9</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">311,497</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">com.shopzone.qa.testcases.LoginTest</td><td><a href="#m0">verifyLoginWithInvalidEmailAndValidPassword</a></td><td rowspan="1">1768591994079</td><td rowspan="1">1576</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="5">com.shopzone.qa.testcases.LoginTest</td><td><a href="#m0">verifyLoginWithInvalidCredentials</a></td><td rowspan="1">1768738777007</td><td rowspan="1">4032</td></tr><tr class="passedeven"><td><a href="#m1">verifyLoginWithInvalidEmailAndValidPassword</a></td><td rowspan="1">1768738813459</td><td rowspan="1">2427</td></tr><tr class="passedeven"><td><a href="#m2">verifyLoginWithValidCredentials</a></td><td rowspan="1">1768738716600</td><td rowspan="1">8044</td></tr><tr class="passedeven"><td><a href="#m3">verifyLoginWithValidEmailAndInvalidPassword</a></td><td rowspan="1">1768738858918</td><td rowspan="1">3753</td></tr><tr class="passedeven"><td><a href="#m4">verifyLoginWithoutProvidingCredentials</a></td><td rowspan="1">1768738907954</td><td rowspan="1">2530</td></tr><tr class="passedodd"><td rowspan="4">com.shopzone.qa.testcases.RegisterTest</td><td><a href="#m5">verifyRegisteringAccountByProvidingAllFields</a></td><td rowspan="1">1768738954708</td><td rowspan="1">2240</td></tr><tr class="passedodd"><td><a href="#m6">verifyRegisteringAccountWithExistingEmailAddress</a></td><td rowspan="1">1768738974753</td><td rowspan="1">2143</td></tr><tr class="passedodd"><td><a href="#m7">verifyRegisteringAccountWithoutFillingAnyDetails</a></td><td rowspan="1">1768738993181</td><td rowspan="1">463</td></tr><tr class="passedodd"><td><a href="#m8">verifyRegisteringAnAccountWithMandatoryFields</a></td><td rowspan="1">1768738927842</td><td rowspan="1">3184</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">com.shopzone.qa.testcases.LoginTest#verifyLoginWithInvalidEmailAndValidPassword</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: Expected Warning message is not displayed expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertTrue(Assert.java:57)
-	at com.shopzone.qa.testcases.LoginTest.verifyLoginWithInvalidEmailAndValidPassword(LoginTest.java:59)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:741)
-	at org.testng.TestRunner.run(TestRunner.java:616)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Test</h2><h3 id="m0">com.shopzone.qa.testcases.LoginTest#verifyLoginWithInvalidCredentials</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">com.shopzone.qa.testcases.LoginTest#verifyLoginWithInvalidEmailAndValidPassword</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">com.shopzone.qa.testcases.LoginTest#verifyLoginWithValidCredentials</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m3">com.shopzone.qa.testcases.LoginTest#verifyLoginWithValidEmailAndInvalidPassword</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m4">com.shopzone.qa.testcases.LoginTest#verifyLoginWithoutProvidingCredentials</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m5">com.shopzone.qa.testcases.RegisterTest#verifyRegisteringAccountByProvidingAllFields</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m6">com.shopzone.qa.testcases.RegisterTest#verifyRegisteringAccountWithExistingEmailAddress</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m7">com.shopzone.qa.testcases.RegisterTest#verifyRegisteringAccountWithoutFillingAnyDetails</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m8">com.shopzone.qa.testcases.RegisterTest#verifyRegisteringAnAccountWithMandatoryFields</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

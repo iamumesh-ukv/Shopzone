@@ -39,6 +39,12 @@ public class LoginTest extends BaseClass {
 
 		// loginPage = loginPage.login(email, password);
 		loginPage.login(prop.getProperty("validEmail"), prop.getProperty("validPassword"));
+		Assert.assertEquals(
+				loginPage.getAccountEmailText(),
+			    "adam_arik@yopmail.com",
+			    "Logged-in user email is incorrect"
+			);
+
 	}
 
 	/*
@@ -50,28 +56,45 @@ public class LoginTest extends BaseClass {
 	@Test(priority = 2)
 	public void verifyLoginWithInvalidCredentials() {
 		loginPage.login(Utilities.generateEmailWithTimeStamp(), dataProp.getProperty("invalidPassword"));
+		Assert.assertTrue(
+				loginPage.retrieveEmailPasswordNotMatchingWarningMessageText()
+						.contains(dataProp.getProperty("emailPasswordNoMatchWarning")),
+				"Email/Password mismatch warning message is NOT displayed");
 	}
 
 	@Test(priority = 3)
 	public void verifyLoginWithInvalidEmailAndValidPassword() {
 		loginPage.login(dataProp.getProperty("invalidEmail"), prop.getProperty("validPassword"));
-		
-		Assert.assertTrue(loginPage.retrieveEmailPasswordNotMatchingWarningMessageText().contains("emailPasswordNoMatchWarning"), "Expected Warning message is not displayed");
+
+		Assert.assertTrue(
+				loginPage.retrieveEmailPasswordNotMatchingWarningMessageText()
+						.contains(dataProp.getProperty("emailPasswordNoMatchWarning")),
+				"Email/Password mismatch warning message is NOT displayed");
+
 	}
 
 	@Test(priority = 4)
 	public void verifyLoginWithValidEmailAndInvalidPassword() {
 		loginPage.login(prop.getProperty("validEmail"), dataProp.getProperty("invalidPassword"));
+		Assert.assertTrue(
+				loginPage.retrieveEmailPasswordNotMatchingWarningMessageText()
+						.contains(dataProp.getProperty("emailPasswordNoMatchWarning")),
+				"Email/Password mismatch warning message is NOT displayed");
+
 	}
 
 	@Test(priority = 5)
 	public void verifyLoginWithoutProvidingCredentials() {
 		loginPage.clickOnLoginButton();
-		Assert.assertEquals(
+		Assert.assertTrue(
 				loginPage.retrieveEmailPasswordNotMatchingWarningMessageText()
-						.contains(dataProp.getProperty("emailPasswordNotMatchingWarning")),
+						.contains(dataProp.getProperty("emailPasswordNoMatchWarning")),
+				"Email/Password mismatch warning message is NOT displayed");
+
+		Assert.assertTrue(
 				loginPage.retrieveNoCustomerAccountFoundWarning()
-						.contains(dataProp.getProperty("noCustomerAccountFoundWarning")));
+						.contains(dataProp.getProperty("cutomerNotFoundWarning")),
+				"No customer account found warning message is NOT displayed");
 	}
 
 }
